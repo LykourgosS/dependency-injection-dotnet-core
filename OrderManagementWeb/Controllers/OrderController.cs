@@ -27,7 +27,13 @@ namespace OrderManagement.Controllers
         public async Task<ActionResult> PostAsync(Order order)
         {
             await orderManager.Transmit(order);
+            return Ok();
+        }
 
+        [HttpPost]
+        public ActionResult Post([FromServices] IOrderManager orderManager, Order order)
+        {
+            orderManager.Transmit(order);
             return Ok();
         }
     }
