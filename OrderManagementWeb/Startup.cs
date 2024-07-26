@@ -1,3 +1,4 @@
+using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +25,8 @@ namespace OrderManagement
 
             services.AddScoped<IOrderSender, HttpOrderSender>();
             services.AddScoped<IOrderManager, OrderManager>();
+
+            services.AddSingleton<IManagementConnection, HttpClientManagementConnection>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
