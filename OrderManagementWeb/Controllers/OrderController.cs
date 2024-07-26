@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc;
 using OrderManagement.Interfaces;
 using OrderManagement.Managers;
@@ -35,6 +36,15 @@ namespace OrderManagement.Controllers
         {
             orderManager.Transmit(order);
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetWithAuth0([FromServices] IManagementConnection managementConnection)
+        {
+            // ... code ...
+            var managementApiClient = new ManagementApiClient("YOUR_MANAGEMENT_TOKEN", "YOUR_AUTH0_DOMAIN", managementConnection);
+            // ... code ...
+            return await Task.FromResult(Ok());
         }
     }
 }
